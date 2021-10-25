@@ -1,0 +1,11 @@
+Krepšelis: {{cart.length}}
+
+<ng-container *ngFor="let item of items">
+  <app-item
+    [item]="item"
+    (onItemAdded)="addToCart(item.id)"
+    (onItemRemoved)="removeFromCart(item.id)"
+  ></app-item>
+</ng-container>
+
+<app-cart [cart]="cart" [items]="items"></app-cart>
