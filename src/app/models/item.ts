@@ -6,8 +6,4 @@ export class Item {
     public discount: number = 0
   ) {
   }
-
-  public get priceWithDiscount(): number {
-    return this.price - (this.price * (this.discount / 100));
-  }
 }

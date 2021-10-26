@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Item } from "../../models/item";
+import {Component, OnInit} from '@angular/core';
+import {Item} from "../../models/item";
+import {DiscountPipe} from "../../pipes/discount.pipe";
 
 @Component({
   selector: 'app-item-list',
@@ -7,15 +8,14 @@ import { Item } from "../../models/item";
   styleUrls: ['./item-list.component.scss']
 })
 export class ItemListComponent implements OnInit {
-  // paduodam Item masyva
   public items: Item[] = [];
   public cart: number[] = [];
 
-  constructor() {
+  public saleEndDate: Date = new Date("2021-12-23");
+
+  constructor(private discountPipe: DiscountPipe) {
   }
 
-  // reiksmes priskiriam cia
-  // sukuriam naujus itemus
   ngOnInit(): void {
     this.items.push(new Item(1, "Lego", 120, 10));
     this.items.push(new Item(665, "Kryželis", 10, 0));
@@ -23,13 +23,25 @@ export class ItemListComponent implements OnInit {
   }
 
   public addToCart(itemId: number) {
-    this.cart.push(itemId);
+    // [] <--- Taip susikuria naujas masyvas
+    // [...kitasMasyvas] <--- Taip į masyvą "pažeriami" kito masyvo elementai
+    // [1, 2, 3]
+    // [...kitasMasyvas, 1]
+    this.cart = [...this.cart, itemId];
   }
 
   public removeFromCart(itemId: number) {
     const itemIndex = this.cart.indexOf(itemId);
-    // indexOf gali grazinti -1
+
     if (itemIndex !== -1)
       this.cart.splice(itemIndex, 1);
+
+    this.cart = [...this.cart]; // Nedaryti to namuose!
+  }
+
+  public generateCSV(): void {
+    this.items.forEach((item) => {
+      const finalPrice = this.discountPipe.transform(item.price, item.discount);
+    });
   }
 }

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Item } from "../../models/item";
-import { CartMap } from "../../models/cart-map";
+import {Component, Input, OnInit} from '@angular/core';
+import {Item} from "../../models/item";
+import {CartMap} from "../../models/cart-map";
 
 @Component({
   selector: 'app-cart[cart][items]',
@@ -14,42 +14,10 @@ export class CartComponent implements OnInit {
   @Input()
   items!: Item[];
 
+  counter: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  public transformToCartItems(cart: number[]): CartMap[] {
-    const cartMapArray: CartMap[] = [];
-
-    // einame per kiekvieną id
-    cart.forEach((itemId: number) => {
-
-      // patikrinkime ar toks ID jau nėra sugrupuotas
-      const hasItemIdMapped = cartMapArray.some((mapping) => mapping.itemId === itemId);
-
-      if (hasItemIdMapped)
-        return;
-
-      // skaičiuojame, kiek tokių id jau yra krepšelyje
-      const items = cart.filter((i) => i === itemId);
-
-      const mapping: CartMap = {
-        itemId: itemId,
-        itemCount: items.length
-      };
-
-      cartMapArray.push(mapping);
-    });
-
-    return cartMapArray;
-  }
-
-  public itemIdToName(itemId: number): string {
-    const item = this.items.find((item) => item.id === itemId);
-
-    return item?.name || "";
-
-    // return item ? item.name : "";
   }
 }

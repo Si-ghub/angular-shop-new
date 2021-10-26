@@ -1,5 +1,11 @@
+<a routerLink="/items">Go back to item list</a>
 <ul>
-  <li *ngFor="let item of transformToCartItems(cart)">
-    Item id: {{itemIdToName(item.itemId)}}, count: {{item.itemCount}}
+  <li *ngFor="let item of (cart | cartToCartMap)">
+    Item id: {{item.itemId}} <br>
+    Name: {{item.itemId | itemIdToName : items}} <br>
+    Count: {{item.itemCount}}
   </li>
 </ul>
+
+{{counter}}
+<button (click)="counter = counter + 1">Padidinti</button>

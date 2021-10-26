@@ -1,4 +1,5 @@
-Krepšelis: {{cart.length}}
+<a routerLink="/cart">Krepšelis: {{cart.length}}</a><br>
+Išpardavimas baigsis: {{saleEndDate | date : "YYYY-MM-dd"}}
 
 <ng-container *ngFor="let item of items">
   <app-item
@@ -8,4 +9,4 @@ Krepšelis: {{cart.length}}
   ></app-item>
 </ng-container>
 
-<app-cart [cart]="cart" [items]="items"></app-cart>
+<button (click)="generateCSV()">Generuoti CSV</button>

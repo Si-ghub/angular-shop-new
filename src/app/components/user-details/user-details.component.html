@@ -1,0 +1,18 @@
+<h2>User details</h2>
+<form>
+  <input placeholder="Name" [(ngModel)]="name" name="vardas"> <br>
+
+  <input placeholder="Address"> <br>
+
+  <select>
+    <option>Vilnius</option>
+    <option>Siauliai</option>
+    <option>Klaipėda</option>
+  </select>
+
+  <br>
+
+  <input placeholder="Phone number">
+
+  <button (click)="printDetails()">Print data</button>
+</form>
