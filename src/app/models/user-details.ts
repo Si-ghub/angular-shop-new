@@ -1,6 +1,6 @@
 export class UserDetails {
-  public readonly name: string = "";
+  public name: string = "";
   public address: string = "";
   public city: string = "";
-  public phoneNumber: string = "";
+  public zip?: number;
 }

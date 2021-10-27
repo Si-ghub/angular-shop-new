@@ -1,22 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Item} from "../../models/item";
-import {CartMap} from "../../models/cart-map";
+import {Component, OnInit} from '@angular/core';
+import {CartService} from "../../services/cart.service";
+import {ItemService} from "../../services/item.service";
 
 @Component({
-  selector: 'app-cart[cart][items]',
+  selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  @Input()
-  cart!: number[];
-
-  @Input()
-  items!: Item[];
-
   counter: number = 0;
 
-  constructor() { }
+  constructor(public cartService: CartService,
+              public itemService: ItemService) {
+  }
 
   ngOnInit(): void {
   }

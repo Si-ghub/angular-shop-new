@@ -1,18 +1,30 @@
 <h2>User details</h2>
 <form>
-  <input placeholder="Name" [(ngModel)]="name" name="vardas"> <br>
+  <input *ngIf="userDetails" placeholder="Name" [(ngModel)]="userDetails.name" name="vardas">
+  <br>
 
-  <input placeholder="Address"> <br>
+  <ng-container *ngIf="!validateName()">
+    Vardas yra per trumpas
+    <br>
+  </ng-container>
 
-  <select>
-    <option>Vilnius</option>
-    <option>Siauliai</option>
-    <option>Klaipėda</option>
+  <input *ngIf="userDetails" placeholder="Address" [(ngModel)]="userDetails.address" name="address"> <br>
+
+  <select *ngIf="userDetails" name="city" [(ngModel)]="userDetails.city">
+    <option value="vln">Vilnius</option>
+    <option value="shl">Siauliai</option>
+    <option value="klp">Klaipėda</option>
   </select>
 
   <br>
 
-  <input placeholder="Phone number">
+  <input *ngIf="userDetails" placeholder="ZIP" type="number" name="zip" [(ngModel)]="userDetails.zip">
 
-  <button (click)="printDetails()">Print data</button>
+  <br>
+  <input type="checkbox" [(ngModel)]="agreement" (change)="agreementCheckboxValueChanged()" name="aggreement"> Sutinku su taisyklėmis
+  <br>
+
+  <button (click)="saveUserDetails()">Save</button>
 </form>
+
+<a routerLink="/">Back to main</a>

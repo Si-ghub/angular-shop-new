@@ -1,8 +1,8 @@
 <a routerLink="/items">Go back to item list</a>
 <ul>
-  <li *ngFor="let item of (cart | cartToCartMap)">
+  <li *ngFor="let item of (cartService.cart | cartToCartMap)">
     Item id: {{item.itemId}} <br>
-    Name: {{item.itemId | itemIdToName : items}} <br>
+    Name: {{item.itemId | itemIdToName : itemService.items}} <br>
     Count: {{item.itemCount}}
   </li>
 </ul>

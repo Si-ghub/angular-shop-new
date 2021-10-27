@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Item} from "../../models/item";
 import {DiscountPipe} from "../../pipes/discount.pipe";
+import {CartService} from "../../services/cart.service";
+import {ItemService} from "../../services/item.service";
 
 @Component({
   selector: 'app-item-list',
@@ -8,18 +10,12 @@ import {DiscountPipe} from "../../pipes/discount.pipe";
   styleUrls: ['./item-list.component.scss']
 })
 export class ItemListComponent implements OnInit {
-  public items: Item[] = [];
-  public cart: number[] = [];
-
   public saleEndDate: Date = new Date("2021-12-23");
 
-  constructor(private discountPipe: DiscountPipe) {
+  constructor(private discountPipe: DiscountPipe, public cartService: CartService, public itemService: ItemService) {
   }
 
   ngOnInit(): void {
-    this.items.push(new Item(1, "Lego", 120, 10));
-    this.items.push(new Item(665, "Kryželis", 10, 0));
-    this.items.push(new Item(419, "SEL Albumas", 15, 50));
   }
 
   public addToCart(itemId: number) {
@@ -27,21 +23,21 @@ export class ItemListComponent implements OnInit {
     // [...kitasMasyvas] <--- Taip į masyvą "pažeriami" kito masyvo elementai
     // [1, 2, 3]
     // [...kitasMasyvas, 1]
-    this.cart = [...this.cart, itemId];
+    this.cartService.cart = [...this.cartService.cart, itemId];
   }
 
   public removeFromCart(itemId: number) {
-    const itemIndex = this.cart.indexOf(itemId);
+    const itemIndex = this.cartService.cart.indexOf(itemId);
 
     if (itemIndex !== -1)
-      this.cart.splice(itemIndex, 1);
+      this.cartService.cart.splice(itemIndex, 1);
 
-    this.cart = [...this.cart]; // Nedaryti to namuose!
+    this.cartService.cart = [...this.cartService.cart]; // Nedaryti to namuose!
   }
 
   public generateCSV(): void {
-    this.items.forEach((item) => {
-      const finalPrice = this.discountPipe.transform(item.price, item.discount);
-    });
+    // this.items.forEach((item) => {
+    //   const finalPrice = this.discountPipe.transform(item.price, item.discount);
+    // });
   }
 }
