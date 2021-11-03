@@ -1,0 +1,16 @@
+:host {
+  width: 350px;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 1;
+}
+
+.message {
+  border-radius: 5px;
+  padding: 20px;
+  line-height: 1.5em;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin-bottom: 20px;
+  background-color: white;
+}

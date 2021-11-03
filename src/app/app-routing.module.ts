@@ -4,6 +4,7 @@ import {ItemListComponent} from "./components/item-list/item-list.component";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {UserDetailsComponent} from "./components/user-details/user-details.component";
+import {AddItemFormComponent} from "./components/add-item-form/add-item-form.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'items',
     pathMatch: 'full'
+  },
+  {
+    path: 'add-item',
+    component: AddItemFormComponent
   },
   {
     path: 'cart',

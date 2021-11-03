@@ -11,7 +11,9 @@ import { CartToCartMapPipe } from './pipes/cart-to-cart-map.pipe';
 import { ItemIdToNamePipe } from './pipes/item-id-to-name.pipe';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
 import {FormsModule} from "@angular/forms";
+import { MessagesComponent } from './components/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {FormsModule} from "@angular/forms";
     CartToCartMapPipe,
     ItemIdToNamePipe,
     PageNotFoundComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    AddItemFormComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
