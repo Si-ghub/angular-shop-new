@@ -14,6 +14,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
 import {FormsModule} from "@angular/forms";
 import { MessagesComponent } from './components/messages/messages.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MessagesComponent } from './components/messages/messages.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     DiscountPipe

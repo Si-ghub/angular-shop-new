@@ -1,4 +1,8 @@
-<div class="message">Klaidos preanešimas lorem ipsum dolor sit amet</div>
-<div class="message">Klaidos preanešimas lorem ipsum dolor sit amet</div>
-<div class="message">Klaidos preanešimas lorem ipsum dolor sit amet</div>
-<div class="message">Klaidos preanešimas lorem ipsum dolor sit amet</div>
+<div *ngFor="let message of messages" class="message"
+     [ngClass]="{
+        error: message.type === 0,
+        success: message.type === 1,
+        warning: message.type === 2
+     }">
+  {{message.message}}
+</div>

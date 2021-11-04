@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ItemService} from "../../services/item.service";
 import {NgForm} from "@angular/forms";
 import {Item} from "../../models/item";
+import {MessagesService} from "../../services/messages.service";
+import {NotificationType} from "../../models/notification";
 
 @Component({
   selector: 'app-add-item-form',
@@ -9,7 +11,7 @@ import {Item} from "../../models/item";
   styleUrls: ['./add-item-form.component.scss']
 })
 export class AddItemFormComponent implements OnInit {
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService, private messageService: MessagesService) {
   }
 
   ngOnInit(): void {
@@ -18,6 +20,11 @@ export class AddItemFormComponent implements OnInit {
   public createItem(form: NgForm): void {
     if (form.invalid) {
       console.log("Neteisingai įvesti duomenys!");
+
+      this.messageService.postMessage({
+        message: "Neteisingai įvesti duomenys!",
+        type: NotificationType.Error
+      });
       return;
     }
 
@@ -31,6 +38,11 @@ export class AddItemFormComponent implements OnInit {
 
     // Įdedame sukurtą prekę į prekių servisą
     this.itemService.addItem(item);
+
+    this.messageService.postMessage({
+      message: "Prekė pridėta",
+      type: NotificationType.Success
+    });
 
     form.form.reset();
   }

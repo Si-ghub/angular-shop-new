@@ -6,6 +6,8 @@ import {
   Output
 } from '@angular/core';
 import {Item} from "../../models/item";
+import {MessagesService} from "../../services/messages.service";
+import {NotificationType} from "../../models/notification";
 
 @Component({
   selector: 'app-item[item]',
@@ -22,12 +24,19 @@ export class ItemComponent implements OnInit {
   @Output()
   onItemRemoved!: EventEmitter<void>;
 
-  constructor() {
+  constructor(private messagesService: MessagesService) {
     this.onItemAdded = new EventEmitter<void>();
     this.onItemRemoved = new EventEmitter<void>();
   }
 
   ngOnInit(): void {
+  }
+
+  public postItemRemovedMessage(): void {
+    this.messagesService.postMessage({
+      message: "Prekė išimta iš krepšelio",
+      type: NotificationType.Warning
+    });
   }
 
 }
