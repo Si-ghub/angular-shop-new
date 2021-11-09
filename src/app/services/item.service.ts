@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Item} from "../models/item";
+import {Item, ItemWithoutId} from "../models/item";
 import {HttpClient} from "@angular/common/http";
 import {MessagesService} from "./messages.service";
 import {NotificationType} from "../models/notification";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,10 @@ export class ItemService {
   constructor(public http: HttpClient, private messageService: MessagesService) {
   }
 
-  public addItem(item: Item): void {
-    this._items.push(item);
+  public addItem(item: ItemWithoutId): Observable<any> {
+    const request = this.http.post("http://localhost:3000/api/product", item);
+
+    return request;
   }
 
   public get items(): Item[] {

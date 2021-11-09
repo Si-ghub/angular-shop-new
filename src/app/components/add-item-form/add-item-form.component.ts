@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ItemService} from "../../services/item.service";
 import {NgForm} from "@angular/forms";
-import {Item} from "../../models/item";
+import {Item, ItemWithoutId} from "../../models/item";
 import {MessagesService} from "../../services/messages.service";
 import {NotificationType} from "../../models/notification";
 
@@ -28,22 +28,26 @@ export class AddItemFormComponent implements OnInit {
       return;
     }
 
-    const itemId = form.form.controls.itemId.value;
     const itemName = form.form.controls.itemName.value;
     const itemPrice = form.form.controls.itemPrice.value;
     const itemDiscount = form.form.controls.itemDiscount.value;
 
-    // Sukuriame prekę pagal formos laukelių reikšmes
-    const item = new Item(itemId, itemName, itemPrice, itemDiscount);
+    const item: ItemWithoutId = {
+      name: itemName,
+      price: itemPrice,
+      isOnSale: itemDiscount
+    };
 
-    // Įdedame sukurtą prekę į prekių servisą
-    this.itemService.addItem(item);
+    console.log(item);
 
-    this.messageService.postMessage({
-      message: "Prekė pridėta",
-      type: NotificationType.Success
+    this.itemService.addItem(item).subscribe((response) => {
+
+      this.messageService.postMessage({
+        message: `Prekė ${response.name} pridėta su ID ${response.id}`,
+        type: NotificationType.Success
+      });
+
+      form.form.reset();
     });
-
-    form.form.reset();
   }
 }

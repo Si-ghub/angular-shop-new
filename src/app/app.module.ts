@@ -15,6 +15,8 @@ import { AddItemFormComponent } from './components/add-item-form/add-item-form.c
 import {FormsModule} from "@angular/forms";
 import { MessagesComponent } from './components/messages/messages.component';
 import {HttpClientModule} from "@angular/common/http";
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import {HttpClientModule} from "@angular/common/http";
     PageNotFoundComponent,
     UserDetailsComponent,
     AddItemFormComponent,
-    MessagesComponent
+    MessagesComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

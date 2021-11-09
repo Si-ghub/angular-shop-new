@@ -7,3 +7,9 @@ export class Item {
   ) {
   }
 }
+
+export interface ItemWithoutId {
+  name: string;
+  price: number;
+  isOnSale: boolean;
+}

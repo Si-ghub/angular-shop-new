@@ -5,14 +5,6 @@
 <!--</form>-->
 
 <form #itemForm="ngForm">
-  <input type="number" placeholder="ID" name="itemId" ngModel required min="1" #itemIdInput="ngModel">
-
-  <div *ngIf="itemIdInput.invalid && itemIdInput.touched">
-    <div *ngIf="itemIdInput.errors?.min">ID yra per mažas skaičius</div>
-    <div *ngIf="itemIdInput.errors?.required">Neįvestas ID</div>
-  </div>
-  <br>
-
   <input #itemNameInput="ngModel"
          name="itemName"
          placeholder="Pavadinimas"
@@ -29,7 +21,7 @@
   <div *ngIf="itemPriceInput.invalid && itemPriceInput.touched">Neteisingai įvesta kaina</div>
   <br>
 
-  <input type="number" placeholder="Nuolaida (%)" name="itemDiscount" ngModel> <br>
+  <input type="checkbox" ngModel name="itemDiscount" id="itemDiscount"> <label for="itemDiscount">Taikoma nuolaida</label> <br>
 
   <button (click)="createItem(itemForm)">Pridėti</button>
 </form>

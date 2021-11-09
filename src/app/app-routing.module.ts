@@ -5,16 +5,24 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 import {CartComponent} from "./components/cart/cart.component";
 import {UserDetailsComponent} from "./components/user-details/user-details.component";
 import {AddItemFormComponent} from "./components/add-item-form/add-item-form.component";
+import {LoginComponent} from "./components/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {LoginGuard} from "./guards/login.guard";
 
 const routes: Routes = [
   {
-    path: 'items',
-    component: ItemListComponent
+    path: 'login',
+    component: LoginComponent
   },
-  // {
-  //   path: '',
-  //   component: ItemListComponent
-  // },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'items',
+    component: ItemListComponent,
+    canActivate: [LoginGuard]
+  },
   {
     path: '',
     redirectTo: 'items',
