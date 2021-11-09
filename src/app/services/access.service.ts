@@ -10,10 +10,17 @@ export class AccessService {
   private _token?: string;
 
   constructor(private http: HttpClient) {
+    this._token = window.sessionStorage.getItem("token") || undefined;
+  }
+
+  public get token(): string | undefined {
+    return this._token;
   }
 
   public setToken(token: string): void {
     this._token = token;
+
+    window.sessionStorage.setItem("token", token);
   }
 
   public get isLoggedIn(): boolean {
