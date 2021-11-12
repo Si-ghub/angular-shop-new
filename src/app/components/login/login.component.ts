@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../../models/user";
-import {AccessService} from "../../services/access.service";
+import {AccessService} from "../../services/access/access.service";
 import {MessagesService} from "../../services/messages.service";
 import {NotificationType} from "../../models/notification";
 import {Router} from "@angular/router";

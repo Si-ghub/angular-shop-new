@@ -3,6 +3,7 @@ import {Item} from "../../models/item";
 import {DiscountPipe} from "../../pipes/discount.pipe";
 import {CartService} from "../../services/cart.service";
 import {ItemService} from "../../services/item.service";
+import {AccessService} from "../../services/access/access.service";
 
 @Component({
   selector: 'app-item-list',
@@ -12,7 +13,10 @@ import {ItemService} from "../../services/item.service";
 export class ItemListComponent implements OnInit {
   public saleEndDate: Date = new Date("2021-12-23");
 
-  constructor(private discountPipe: DiscountPipe, public cartService: CartService, public itemService: ItemService) {
+  constructor(private discountPipe: DiscountPipe,
+              public cartService: CartService,
+              public itemService: ItemService,
+              public accessService: AccessService) {
   }
 
   ngOnInit(): void {

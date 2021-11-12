@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {MessagesService} from "./messages.service";
 import {NotificationType} from "../models/notification";
 import {Observable} from "rxjs";
-import {AccessService} from "./access.service";
+import {AccessService} from "./access/access.service";
 
 @Injectable({
   providedIn: 'root'

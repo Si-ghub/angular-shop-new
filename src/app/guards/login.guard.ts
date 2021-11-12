@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {CanActivate, Router} from '@angular/router';
 import {MessagesService} from "../services/messages.service";
 import {NotificationType} from "../models/notification";
-import {AccessService} from "../services/access.service";
+import {AccessService} from "../services/access/access.service";
 
 // ng generate guard guards/pavadinimas
 @Injectable({
@@ -13,6 +13,10 @@ export class LoginGuard implements CanActivate {
               private messagesService: MessagesService,
               private accessService: AccessService) {
   }
+
+  // Unit
+  // Integration
+  // E2E - End 2 End
 
   canActivate(): boolean {
     if (this.accessService.isLoggedIn)
